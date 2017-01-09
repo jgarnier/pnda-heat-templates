@@ -107,6 +107,9 @@ parameter_defaults:
   #  
   AnacondaParcelsMirror: 'http://x.x.x.x/mirror/anaconda'
   
+  # npm registry
+  npm_registry: 'https://registry.npmjs.org/'
+
   # alternative pip index
   pip_extra_index_url: 'http://10.60.18.158:8080/'
   
