@@ -102,6 +102,9 @@ parameter_defaults:
   # example format: 'http://x.x.x.x/mirror/anaconda'
   AnacondaParcelsMirror: ''
   
+  # alternative pip index
+  pip_extra_index_url: 'http://10.60.18.158:8080/'
+  
   #
   # git_private_key_file: If authenticated access to platform_git_repo_uri is required then this key should be
   # provided. This is not normally used now platform-salt is on public github
