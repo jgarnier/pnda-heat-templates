@@ -117,6 +117,13 @@ anaconda:
 EOF
 fi
 
+if [ "x$pip_extra_index_url$" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+pip:
+  extra_index_url: '$pip_extra_index_url$'
+EOF
+fi
+
 if [ "x$ntp_servers$" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 ntp:
