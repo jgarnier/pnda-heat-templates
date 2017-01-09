@@ -91,6 +91,11 @@ parameter_defaults:
   JavaMirror: 'http://x.x.x.x/mirror/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz'
 
   #
+  # OsPackageMirror: URI of the bundle of packages for offline installation of operating system packages
+  #  
+  OsPackageMirror: 'http://www.example.com/mirror/os-pkg/pnda-os-packages.zip'
+
+  #
   # ClouderaParcelsMirror: A mirror of the CDH repo. This is optional but can speed up provisioning
   # if the network connection to the Cloudera hosted repo is slow, as the download is 1.5GB
   #  

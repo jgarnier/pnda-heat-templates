@@ -61,6 +61,10 @@ parameters:
     description: URL of a mirror for anaconda parcels download
     type: string
     default: ''
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
   pip_extra_index_url:
     description: Extra index url for pip
     type: string
@@ -147,6 +151,10 @@ parameters:
   software_config_transport:
     type: string
     default: POLL_TEMP_URL
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
 
 resources:
   # A keypair is created for this stack and used to secure login for all instances
@@ -250,6 +258,7 @@ resources:
         str_replace:
           template: { get_file: scripts/saltmaster_install.sh }
           params:
+            $os_package_mirror$: { get_param: OsPackageMirror }
             $flavor$: { get_param: PndaFlavor }
             $pnda_cluster$: {get_param: 'OS::stack_name'}
             $git_private_key$: { get_file: deploy }
