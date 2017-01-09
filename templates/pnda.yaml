@@ -63,7 +63,8 @@ parameters:
     default: ''
   npm_registry:
     description: NPM registry
-    type: stringdefault: ''
+    type: string
+    default: ''
   OsPackageMirror:
     description: URL of a mirror for operating system package download
     type: string
