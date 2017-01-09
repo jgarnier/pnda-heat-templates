@@ -47,7 +47,10 @@ parameters:
   scheduler_group_hint:
     type: string
 {%endif%}
-
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
 
 resources:
   port:
@@ -65,6 +68,7 @@ resources:
         str_replace:
           template: {get_file: scripts/base_install.sh }
           params:
+            $os_package_mirror$: { get_param: OsPackageMirror }
             $flavor$: { get_param: pnda_flavor }
             $master_ip$: { get_param: SaltmasterIP }
             $brokerid$: { get_param: NodeIndex}

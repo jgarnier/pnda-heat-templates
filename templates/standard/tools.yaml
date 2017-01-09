@@ -40,7 +40,10 @@ parameters:
     type: string
   software_config_transport:
     type: string
-
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
 
 resources:
   port:
@@ -58,6 +61,7 @@ resources:
         str_replace:
           template: {get_file: scripts/base_install.sh }
           params:
+            $os_package_mirror$: { get_param: OsPackageMirror }
             $flavor$: { get_param: pnda_flavor }
             $master_ip$: { get_param: SaltmasterIP }
             $pnda_cluster$: { get_param: cluster_name }

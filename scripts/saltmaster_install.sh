@@ -8,6 +8,16 @@ set -ex
 
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
+# If system packages are being installed from an offline bundle then download
+# that bundle and make the packages available for installation
+if [ "$os_package_mirror$" != "$" ]; then
+os_mirror_url=$os_package_mirror$
+wget ${os_mirror_url%/*}/apt-offline.deb
+dpkg -i apt-offline.deb
+wget $os_mirror_url
+apt-offline install ${os_mirror_url##*/}
+fi
+
 # Install the saltmaster, plus saltmaster config
 if [ "x$DISTRO" == "xubuntu" ]; then
 export DEBIAN_FRONTEND=noninteractive
