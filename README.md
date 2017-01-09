@@ -68,6 +68,20 @@ You can optionally add the `JavaMirror`, `ClouderaParcelsMirror` and `AnacondaPa
     JavaMirror: 'http://pnda-mirror.example.com/java/jdk/8u74-b02/jdk-8u74-linux-x64.tar.gz'
     ClouderaParcelsMirror: 'http://pnda-mirror.example.com/mirror/archive.cloudera.com/cdh5/parcels/5.9.0/'
 
+You can optionally provide OsPackageMirror to point to a bundle of operating system packages. This avoids downloading such packages from the internet at provisioning time.
+
+    OsPackageMirror: 'http://www.example.com/mirror/os-pkg/pnda-os-packages.zip'
+
+To create the OsPackageMirror zip file run the following commands:
+
+    apt-get update
+    apt-get install apt-offline
+    wget 'http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list' \ -O /etc/apt/sources.list.d/cloudera.list
+    apt-offline set offline.sig --install-packages cloudera-manager-daemons cloudera-manager-server redis-server libsasl2-dev g++ python-dev build-essential libcairo2-dev libffi-dev graphite-carbon nginx uwsgi uwsgi-plugin-python libc6-dev acl nodejs python-pip python-dev python3-pip python3-dev xfsprogs python-git unzip
+    apt-offline get offline.sig --bundle pnda-os-packages.zip
+
+Also obtain the apt-offline deb package, name it "apt-offline.deb" and make available in the same directory as the pnda-os-packages.zip file.
+
 ### Package repository 
 
 The default backend storage for the package repository is Swift and so you should have the containers created as defined with the parameters 'pnda_apps_container' and 'pnda_apps_folder' as describe just above.

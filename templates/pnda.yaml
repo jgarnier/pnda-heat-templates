@@ -38,7 +38,7 @@ parameters:
     description: End of private network IP address allocation pool
   name_servers:
     description: List of name name servers
-    type: string
+    type: comma_delimited_list
   KeyName:
     description: Name of an existing KeyPair to enable SSH access to the instances
     type: string
@@ -63,7 +63,15 @@ parameters:
     default: ''
   npm_registry:
     description: NPM registry
+    type: stringdefault: ''
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
     type: string
+    default: ''
+  pip_extra_index_url:
+    description: Extra index url for pip
+    type: string
+    default: ''
   NtpServers:
     description: NTP servers
     type: string
@@ -146,6 +154,10 @@ parameters:
   software_config_transport:
     type: string
     default: POLL_TEMP_URL
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
 
 resources:
   # A keypair is created for this stack and used to secure login for all instances
@@ -249,6 +261,7 @@ resources:
         str_replace:
           template: { get_file: scripts/saltmaster_install.sh }
           params:
+            $os_package_mirror$: { get_param: OsPackageMirror }
             $flavor$: { get_param: PndaFlavor }
             $pnda_cluster$: {get_param: 'OS::stack_name'}
             $git_private_key$: { get_file: deploy }
@@ -257,6 +270,7 @@ resources:
             $cloudera_mirror$: { get_param: ClouderaParcelsMirror }
             $anaconda_mirror$: { get_param: AnacondaParcelsMirror }
             $npm_registry$: { get_param: npm_registry }
+            $pip_extra_index_url$: { get_param: pip_extra_index_url }
             $ntp_servers$: { get_param: NtpServers }
             $package_repository_fs_type$ : {{ package_repository_fs_type }}
             $package_repository_fs_location_path$: { get_param: package_repository_fs_location_path }

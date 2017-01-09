@@ -438,6 +438,16 @@ Installing the Cloudera Hadoop cluster might take some time. In an effort to red
 | *Default values:* | None |
 | *Example value:* | 'http://www.example.com/mirror/anaconda/misc/parcels/' |
 
+* **OsPackageMirror**
+
+| *Mandatory:* | no |
+| -------------|-----|
+| *Purpose:* | URI of the bundle of packages for offline installation of operating system packages |
+| *Type:* | string |
+| *Default values:* | None |
+| *Example value:* | 'http://www.example.com/mirror/os-pkg/pnda-os-packages.zip' |
+
+
 * **NtpServers**
 
 | *Mandatory:* | no |

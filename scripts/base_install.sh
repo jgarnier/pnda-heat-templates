@@ -5,6 +5,16 @@
 
 set -e
 
+# If system packages are being installed from an offline bundle then download
+# that bundle and make the packages available for installation
+if [ "$os_package_mirror$" != "$" ]; then
+os_mirror_url=$os_package_mirror$
+wget ${os_mirror_url%/*}/apt-offline.deb
+dpkg -i apt-offline.deb
+wget $os_mirror_url
+apt-offline install ${os_mirror_url##*/}
+fi
+
 ROLES=$roles$
 
 cat >> /etc/hosts <<EOF
@@ -82,7 +92,7 @@ if [ -b $HDFS_VOLUME_DEVICE ]; then
 EOF
 fi
 
-if [[ "$package_repository_fs_type$" == "fs" ]]; then
+if [[ "$package_repository_fs_type$" == "local" ]]; then
   PR_VOLUME_ID="$pr_volume_id$"
   PR_VOLUME_DEVICE="/dev/disk/by-id/virtio-$(echo ${PR_VOLUME_ID} | cut -c -20)"
   echo PR_VOLUME_DEVICE is $PR_VOLUME_DEVICE
