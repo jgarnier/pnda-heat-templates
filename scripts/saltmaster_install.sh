@@ -8,6 +8,18 @@ set -ex
 
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
+# Log the outgoing IP connection.
+cat > /etc/rsyslog.d/10-iptables.conf <<EOF
+:msg,contains,"[iplog] " /var/log/iptables.log
+STOP
+EOF
+sudo service rsyslog restart
+iptables -N LOGGING
+iptables -A OUTPUT -j LOGGING
+iptables -A LOGGING -p udp -d 127.0.1.1 -j ACCEPT
+iptables -A LOGGING -p udp -d 127.0.0.1 -j ACCEPT
+iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
+
 # If system packages are being installed from an offline bundle then download
 # that bundle and make the packages available for installation
 if [ "$os_package_mirror$" != "$" ]; then
@@ -204,6 +216,7 @@ pnda:
 pnda_cluster: $pnda_cluster$
 EOF
 
+<<<<<<< 18ef7e72e0f734fb7298b879edc3041ee824a3c9
 if [ "x$DISTRO" == "xubuntu" ]; then
 restart salt-minion
 restart salt-master
@@ -215,3 +228,6 @@ systemctl enable salt-master
 systemctl restart salt-minion
 systemctl restart salt-master
 fi
+=======
+restart salt-minion
+>>>>>>> Log outgoing connections to a dedicated file trough iptables. (#4)

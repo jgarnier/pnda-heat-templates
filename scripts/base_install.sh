@@ -24,6 +24,19 @@ EOF
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [ "x$DISTRO" == "xubuntu" ]; then
+# Log the outgoing IP connection.
+cat > /etc/rsyslog.d/10-iptables.conf <<EOF
+:msg,contains,"[iplog] " /var/log/iptables.log
+STOP
+EOF
+sudo service rsyslog restart
+iptables -N LOGGING
+iptables -A OUTPUT -j LOGGING
+iptables -A LOGGING -p udp -d 127.0.1.1 -j ACCEPT
+iptables -A LOGGING -p udp -d 127.0.0.1 -j ACCEPT
+iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
+
+# Install a salt minion
 export DEBIAN_FRONTEND=noninteractive
 fi
 
