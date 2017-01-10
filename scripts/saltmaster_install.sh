@@ -18,6 +18,15 @@ iptables -A LOGGING -p udp -d 127.0.1.1 -j ACCEPT
 iptables -A LOGGING -p udp -d 127.0.0.1 -j ACCEPT
 iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
 
+# If system packages are being installed from an offline bundle then download
+# that bundle and make the packages available for installation
+if [ "$os_package_mirror$" != "$" ]; then
+os_mirror_url=$os_package_mirror$
+wget ${os_mirror_url%/*}/apt-offline.deb
+dpkg -i apt-offline.deb
+wget $os_mirror_url
+apt-offline install ${os_mirror_url##*/}
+fi
 
 # Install the saltmaster, plus saltmaster config
 export DEBIAN_FRONTEND=noninteractive
@@ -117,6 +126,20 @@ cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 anaconda:
   parcel_version: '4.0.0'  
   parcel_repo: '$anaconda_mirror$'
+EOF
+fi
+
+if [ "x$npm_registry" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+npm:
+  registry: '$npm_registry'
+EOF
+fi
+
+if [ "x$pip_extra_index_url$" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+pip:
+  extra_index_url: '$pip_extra_index_url$'
 EOF
 fi
 
