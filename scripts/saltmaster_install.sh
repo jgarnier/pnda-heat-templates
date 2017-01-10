@@ -138,10 +138,10 @@ anaconda:
 EOF
 fi
 
-if [ "x$npm_registry" != "x" ] ; then
+if [ "x$npm_registry$" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 npm:
-  registry: '$npm_registry'
+  registry: '$npm_registry$'
 EOF
 fi
 
