@@ -152,6 +152,13 @@ pip:
 EOF
 fi
 
+if [ "x$extra_mirror$" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+extra:
+  mirror: '$extra_mirror$'
+EOF
+fi
+
 if [ "x$ntp_servers$" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 ntp:

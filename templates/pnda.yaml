@@ -73,6 +73,10 @@ parameters:
     description: Extra index url for pip
     type: string
     default: ''
+  extra_mirror:
+    description: Extra mirror to download zookeeper, kafka etc... 
+    type: string
+    default: ''
   NtpServers:
     description: NTP servers
     type: string
@@ -272,6 +276,7 @@ resources:
             $anaconda_mirror$: { get_param: AnacondaParcelsMirror }
             $npm_registry$: { get_param: npm_registry }
             $pip_extra_index_url$: { get_param: pip_extra_index_url }
+            $extra_mirror$: { get_param: extra_mirror }
             $ntp_servers$: { get_param: NtpServers }
             $package_repository_fs_type$ : {{ package_repository_fs_type }}
             $package_repository_fs_location_path$: { get_param: package_repository_fs_location_path }
