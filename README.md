@@ -76,8 +76,10 @@ To create the OsPackageMirror zip file run the following commands:
 
     sudo apt-get update
     sudo apt-get install apt-offline
-    wget 'http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list' \ -O /etc/apt/sources.list.d/cloudera.list
+    wget 'http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list'
+    sudo mv cloudera.list /etc/apt/sources.list.d/cloudera.list
     sudo echo 'deb https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
+    sudo echo 'deb-src https://deb.nodesource.com/node_6.x trusty main' >> /etc/apt/sources.list.d/nodesource.list
     sudo apt-offline set offline.sig --install-packages cloudera-manager-daemons cloudera-manager-server redis-server libsasl2-dev g++ python-dev build-essential libcairo2-dev libffi-dev graphite-carbon nginx uwsgi uwsgi-plugin-python libc6-dev acl python-pip python-dev python3-pip python3-dev xfsprogs python-git unzip libmysql-java python-snappy nodejs
     sudo apt-offline get offline.sig --bundle pnda-os-packages.zip
 
