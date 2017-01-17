@@ -15,6 +15,7 @@ STOP
 EOF
 sudo service rsyslog restart
 
+if [ "x$ip_logs$" != "x" ]; then
 # Log the global scope IP connection.
 cat > /etc/rsyslog.d/10-iptables.conf <<EOF
 :msg,contains,"[iplog] " /var/log/iptables.log
@@ -29,10 +30,11 @@ iptables -A LOGGING -d  $line -j ACCEPT
   done
 ## And log all the remaining IP connections.
 iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
+fi
 
 # If system packages are being installed from an offline bundle then download
 # that bundle and make the packages available for installation
-if [ "$os_package_mirror$" != "$" ]; then
+if [ "x$os_package_mirror$" != "x" ]; then
 os_mirror_url=$os_package_mirror$
 wget ${os_mirror_url%/*}/apt-offline.deb
 dpkg -i apt-offline.deb

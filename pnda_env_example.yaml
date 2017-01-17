@@ -116,6 +116,9 @@ parameter_defaults:
   # extra mirror to download zookeeper, kafka etc... should be an URI: http://IP:HOST/
   extra_mirror: ''
   
+  # ip logs for offline tests. set to true to enable it
+  #ip_logs: ''
+
   #
   # git_private_key_file: If authenticated access to platform_git_repo_uri is required then this key should be
   # provided. This is not normally used now platform-salt is on public github

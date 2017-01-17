@@ -51,6 +51,10 @@ parameters:
     description: URL of a mirror for operating system package download
     type: string
     default: ''
+  ip_logs:
+    description: get ip logs for offline tests
+    type: string
+    default: ''
 
 resources:
   port:
@@ -69,6 +73,7 @@ resources:
           template: {get_file: scripts/base_install.sh }
           params:
             $os_package_mirror$: { get_param: OsPackageMirror }
+            $ip_logs$: { get_param: ip_logs }
             $flavor$: { get_param: pnda_flavor }
             $master_ip$: { get_param: SaltmasterIP }
             $brokerid$: { get_param: NodeIndex}

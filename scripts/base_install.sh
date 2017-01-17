@@ -24,6 +24,7 @@ EOF
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [ "x$DISTRO" == "xubuntu" ]; then
+if [ "$ip_logs$" != "$" ]; then
 # Log the global scope IP connection.
 cat > /etc/rsyslog.d/10-iptables.conf <<EOF
 :msg,contains,"[iplog] " /var/log/iptables.log
@@ -38,6 +39,7 @@ iptables -A LOGGING -d  $line -j ACCEPT
   done
 ## And log all the remaining IP connections.
 iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
+fi
 
 # Install a salt minion
 export DEBIAN_FRONTEND=noninteractive

@@ -81,6 +81,10 @@ parameters:
     description: NTP servers
     type: string
     default: ''
+  ip_logs:
+    description: get ip logs for offline tests
+    type: string
+    default: ''
   package_repository_fs_location_path:
     description: Package repository FS location path
     type: string
