@@ -7,7 +7,7 @@ set -ex
 
 # If system packages are being installed from an offline bundle then download
 # that bundle and make the packages available for installation
-if [ "$os_package_mirror$" != "$" ]; then
+if [ "x$os_package_mirror$" != "x" ]; then
 os_mirror_url=$os_package_mirror$
 wget ${os_mirror_url%/*}/apt-offline.deb
 dpkg -i apt-offline.deb
@@ -24,7 +24,7 @@ EOF
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [ "x$DISTRO" == "xubuntu" ]; then
-if [ "$ip_logs$" != "$" ]; then
+if [ "x$ip_logs$" != "x" ]; then
 # Log the global scope IP connection.
 cat > /etc/rsyslog.d/10-iptables.conf <<EOF
 :msg,contains,"[iplog] " /var/log/iptables.log
@@ -63,14 +63,14 @@ EOF
 # place specific cloudera roles on this instance.
 # The mapping of cloudera roles to cloudera:role grains is
 # defined in the cfg_<flavor>.py.tpl files (in platform-salt)
-if [ "$cloudera_role$" != "$" ]; then
+if [ "x$cloudera_role$" != "x" ]; then
   cat >> /etc/salt/grains <<EOF
 cloudera:
   role: $cloudera_role$
 EOF
 fi
 
-if [ "$brokerid$" != "$" ]; then
+if [ "x$brokerid$" != "x" ]; then
   cat >> /etc/salt/grains <<EOF
 broker_id: $brokerid$
 EOF
