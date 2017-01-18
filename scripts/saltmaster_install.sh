@@ -56,12 +56,12 @@ fi
 
 apt-get update
 apt-get -y install python-pip unzip python-git
-if [ "x$os_package_mirror$" != "x" ]; then
-apt-get install salt-master
-else
+#if [ "x$os_package_mirror$" != "x" ]; then
+#apt-get install salt-master
+#else
 wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U -M stable 2015.8.11
-fi
+#fi
 
 cat << EOF > /etc/salt/master
 ## specific PNDA saltmaster config
