@@ -57,7 +57,7 @@ fi
 apt-get update
 apt-get -y install python-pip unzip python-git
 if [ "x$os_package_mirror$" != "x" ]; then
-apt-get -y install salt-master
+apt-get -y install salt-master salt-minion
 else
 wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U -M stable 2015.8.11
