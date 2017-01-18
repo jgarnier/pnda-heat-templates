@@ -51,10 +51,10 @@ if [ "x$salt_mirror$" != "x" ]; then
 fi
 
 if [ "x$os_package_mirror$" != "x" ]; then
-  apt-get install salt-minion
+apt-get install salt-minion
 else
-  wget -O install_salt.sh https://bootstrap.saltstack.com
-  sh install_salt.sh -D -U stable 2015.8.11
+wget -O install_salt.sh https://bootstrap.saltstack.com
+sh install_salt.sh -D -U stable 2015.8.11
 fi
 
 hostname=`hostname` && echo "id: $hostname" > /etc/salt/minion && unset hostname
