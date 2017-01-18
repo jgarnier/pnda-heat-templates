@@ -45,9 +45,15 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 fi
 
-# Install a salt minion
-wget -O install_salt.sh https://bootstrap.saltstack.com
-sh install_salt.sh -D -U stable 2015.8.11
+if [ "x$salt_mirror$" != "x" ]; then
+  echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/2015.8 jessie main' > /etc/apt/sources.list.d/saltstack.list
+  apt-get udpate 
+  apt-get install salt-minion
+else
+  wget -O install_salt.sh https://bootstrap.saltstack.com
+  sh install_salt.sh -D -U stable 2015.8.11
+fi
+
 hostname=`hostname` && echo "id: $hostname" > /etc/salt/minion && unset hostname
 echo "log_level: debug" >> /etc/salt/minion
 echo "log_level_logfile: debug" >> /etc/salt/minion

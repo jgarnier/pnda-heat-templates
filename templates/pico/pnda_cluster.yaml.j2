@@ -97,6 +97,10 @@ parameters:
     description: get ip logs for offline tests
     type: string
     default: ''
+  salt_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
 
 resources:
 {%if create_network is equalto 1 %}

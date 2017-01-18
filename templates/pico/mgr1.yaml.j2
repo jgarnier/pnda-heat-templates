@@ -54,6 +54,10 @@ parameters:
     description: get ip logs for offline tests
     type: string
     default: ''
+  salt_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
 
 resources:
 {%if create_network is equalto 1 %}
@@ -89,6 +93,7 @@ resources:
           params:
             $os_package_mirror$: { get_param: OsPackageMirror }
             $ip_logs$: { get_param: ip_logs }
+            $salt_mirror$: { get_param: salt_mirror }
             $master_ip$: { get_param: SaltmasterIP }
             $pnda_cluster$: { get_param: cluster_name }
             $flavor$: { get_param: pnda_flavor }

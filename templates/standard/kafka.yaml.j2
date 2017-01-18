@@ -55,6 +55,10 @@ parameters:
     description: get ip logs for offline tests
     type: string
     default: ''
+  salt_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
 
 resources:
   port:
@@ -74,6 +78,7 @@ resources:
           params:
             $os_package_mirror$: { get_param: OsPackageMirror }
             $ip_logs$: { get_param: ip_logs }
+            $salt_mirror$: { get_param: salt_mirror }
             $flavor$: { get_param: pnda_flavor }
             $master_ip$: { get_param: SaltmasterIP }
             $brokerid$: { get_param: NodeIndex}

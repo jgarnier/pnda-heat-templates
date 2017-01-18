@@ -85,6 +85,10 @@ parameters:
     description: get ip logs for offline tests
     type: string
     default: ''
+  salt_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
   package_repository_fs_location_path:
     description: Package repository FS location path
     type: string
