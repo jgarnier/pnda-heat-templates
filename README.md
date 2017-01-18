@@ -82,8 +82,8 @@ To create the OsPackageMirror zip file run the following commands:
     mv cloudera.list /etc/apt/sources.list.d/cloudera.list
     echo 'deb https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
     echo 'deb-src https://deb.nodesource.com/node_6.x trusty main' >> /etc/apt/sources.list.d/nodesource.list
-    wget -O - https://repo.saltstack.com/apt/debian/8/amd64/2015.8/SALTSTACK-GPG-KEY.pub | apt-key add -
-    echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/2015.8 jessie main' > /etc/apt/sources.list.d/saltstack.list
+    wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/2015.8/SALTSTACK-GPG-KEY.pub | apt-key add -
+    echo 'deb http://repo.saltstack.com/apt/ubuntu/14.04/amd64/2015.8 trusty main' > /etc/apt/sources.list.d/saltstack.list
     apt-get udpate
     apt-offline set offline.sig --install-packages cloudera-manager-daemons cloudera-manager-server redis-server libsasl2-dev g++ python-dev build-essential libcairo2-dev libffi-dev graphite-carbon nginx uwsgi uwsgi-plugin-python libc6-dev acl python-pip python-dev python3-pip python3-dev xfsprogs python-git unzip libmysql-java python-snappy nodejs salt-master salt-minion
     apt-offline get offline.sig --bundle pnda-os-packages.zip

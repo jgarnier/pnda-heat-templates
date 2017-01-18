@@ -48,6 +48,9 @@ fi
 if [ "x$salt_mirror$" != "x" ]; then
   echo 'deb $salt_mirror$ jessie main' > /etc/apt/sources.list.d/saltstack.list
   apt-get udpate 
+fi
+
+if [ "x$os_package_mirror$" != "x" ]; then
   apt-get install salt-minion
 else
   wget -O install_salt.sh https://bootstrap.saltstack.com

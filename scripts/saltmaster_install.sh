@@ -55,9 +55,8 @@ yum -y install python-git unzip
 fi
 
 apt-get update && apt-get -y install python-pip unzip python-git
-if [ "x$salt_mirror$" != "x" ]; then
+if [ "x$os_package_mirror$" != "x" ]; then
   echo 'deb $salt_mirror$ jessie main' > /etc/apt/sources.list.d/saltstack.list
-  apt-get udpate 
   apt-get install salt-master
 else
   wget -O install_salt.sh https://bootstrap.saltstack.com
