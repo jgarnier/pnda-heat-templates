@@ -56,7 +56,7 @@ fi
 
 apt-get update && apt-get -y install python-pip unzip python-git
 if [ "x$salt_mirror$" != "x" ]; then
-  echo 'deb http://repo.saltstack.com/apt/debian/8/amd64/2015.8 jessie main' > /etc/apt/sources.list.d/saltstack.list
+  echo 'deb $salt_mirror$ jessie main' > /etc/apt/sources.list.d/saltstack.list
   apt-get udpate 
   apt-get install salt-master
 else
