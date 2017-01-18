@@ -80,6 +80,7 @@ To create the OsPackageMirror zip file run the following commands:
     wget 'http://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list'
     curl -s http://archive.cloudera.com/cdh5/debian/wheezy/amd64/cdh/archive.key | apt-key add -
     mv cloudera.list /etc/apt/sources.list.d/cloudera.list
+    curl --silent https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
     echo 'deb https://deb.nodesource.com/node_6.x trusty main' > /etc/apt/sources.list.d/nodesource.list
     echo 'deb-src https://deb.nodesource.com/node_6.x trusty main' >> /etc/apt/sources.list.d/nodesource.list
     wget -O - https://repo.saltstack.com/apt/ubuntu/14.04/amd64/2015.8/SALTSTACK-GPG-KEY.pub | apt-key add -
