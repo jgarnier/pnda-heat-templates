@@ -61,6 +61,10 @@ parameters:
     description: URL of a mirror of SaltStack
     type: string
     default: ''
+  nodejs_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
 
 resources:
 {%if create_network is equalto 1 %}
@@ -106,6 +110,7 @@ resources:
             $os_package_mirror$: { get_param: OsPackageMirror }
             $ip_logs$: { get_param: ip_logs }
             $salt_mirror$: { get_param: salt_mirror }
+            $nodejs_mirror$: { get_param: nodejs_mirror }
             $flavor$: { get_param: pnda_flavor }
             $roles$: 'bastion'
             $master_ip$: { get_param: SaltmasterIP }
