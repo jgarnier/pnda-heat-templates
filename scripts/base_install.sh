@@ -47,6 +47,7 @@ fi
 
 if [ "x$salt_mirror$" != "x" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
+wget -O - $salt_mirror$/SALTSTACK-GPG-KEY.pub | apt-key add -
 apt-get update
 apt-get -y install salt-minion=2016.11.1+ds-1
 else
