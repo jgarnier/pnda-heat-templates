@@ -46,12 +46,9 @@ export DEBIAN_FRONTEND=noninteractive
 fi
 
 if [ "x$salt_mirror$" != "x" ]; then
-  echo 'deb $salt_mirror$ jessie main' > /etc/apt/sources.list.d/saltstack.list
-  apt-get udpate 
-fi
-
-if [ "x$os_package_mirror$" != "x" ]; then
-apt-get -y install salt-minion
+echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
+apt-get update
+apt-get -y install salt-minion=2016.11.1+ds-1
 else
 wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U stable 2015.8.11
