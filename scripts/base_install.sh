@@ -54,6 +54,13 @@ wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U stable 2015.8.11
 fi
 
+
+if [ "x$nodejs_mirror$" != "x" ]; then
+echo 'deb $nodejs_mirror$ trusty main' > /etc/apt/sources.list.d/nodejs.list
+curl --silent $nodejs_mirror$/gpgkey/nodesource.gpg.key | apt-key add -
+apt-get update 
+fi
+
 hostname=`hostname` && echo "id: $hostname" > /etc/salt/minion && unset hostname
 echo "log_level: debug" >> /etc/salt/minion
 echo "log_level_logfile: debug" >> /etc/salt/minion

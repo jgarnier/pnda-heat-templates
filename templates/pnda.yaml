@@ -89,6 +89,10 @@ parameters:
     description: URL of a mirror of SaltStack
     type: string
     default: ''
+  nodejs_mirror:
+    description: URL of a mirror of NodeJS
+    type: string
+    default: ''
   package_repository_fs_location_path:
     description: Package repository FS location path
     type: string
@@ -276,6 +280,7 @@ resources:
           params:
             $os_package_mirror$: { get_param: OsPackageMirror }
             $salt_mirror$: { get_param: salt_mirror }
+            $nodejs_mirror$: { get_param: nodejs_mirror }
             $flavor$: { get_param: PndaFlavor }
             $pnda_cluster$: {get_param: 'OS::stack_name'}
             $git_private_key$: { get_file: deploy }
