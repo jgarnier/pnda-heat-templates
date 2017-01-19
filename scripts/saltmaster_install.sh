@@ -59,7 +59,7 @@ apt-get -y install python-pip unzip python-git
 if [ "x$salt_mirror$" != "x" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
 apt-get update --allow-unauthenticated 
-apt-get -y install salt-minion=2016.11.1+ds-1 salt-master=2016.11.1+ds-1
+apt-get -y --force-yes install salt-minion=2016.11.1+ds-1 salt-master=2016.11.1+ds-1
 else
 wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U -M stable 2015.8.11
