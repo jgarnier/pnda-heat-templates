@@ -48,7 +48,7 @@ fi
 if [ "x$salt_mirror$" != "x" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
 apt-get update --allow-unauthenticated 
-apt-get -y --force-yes install salt-minion=2015.8.12+ds-1
+apt-get -y --force-yes install salt-minion=2015.8.11+ds-1
 else
 wget -O install_salt.sh https://bootstrap.saltstack.com
 sh install_salt.sh -D -U stable 2015.8.11
