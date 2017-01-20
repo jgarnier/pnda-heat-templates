@@ -57,6 +57,10 @@ parameters:
     description: URL of a mirror for cloudera parcels download
     type: string
     default: ''
+  ClouderaCmMirror:
+    description: URL of a mirror for cloudera manager download
+    type: string
+    default: ''
   AnacondaParcelsMirror:
     description: URL of a mirror for anaconda parcels download
     type: string
@@ -287,6 +291,7 @@ resources:
             $git_branch$: { get_param: GitBranch }
             $java_mirror$: { get_param: JavaMirror }
             $cloudera_mirror$: { get_param: ClouderaParcelsMirror }
+            $cloudera_cm_mirror$: { get_param: ClouderaCmMirror }
             $anaconda_mirror$: { get_param: AnacondaParcelsMirror }
             $npm_registry$: { get_param: npm_registry }
             $pip_extra_index_url$: { get_param: pip_extra_index_url }
