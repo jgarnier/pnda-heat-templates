@@ -43,7 +43,7 @@ do
   iptables -A LOGGING -d  $element -j ACCEPT
 done
 ## And log all the remaining IP connections.
-iptables -A LOGGING -j DROP --log-prefix "[iplog] " --log-level 7 -m state --state NEW
+iptables -A LOGGING -j DROP -m state --state NEW
 fi
 
 # Install a salt minion
