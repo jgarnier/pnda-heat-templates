@@ -25,9 +25,15 @@ sudo service rsyslog restart
 iptables -N LOGGING
 iptables -A OUTPUT -j LOGGING
 ## Accept all local scope IP packets.
-  ip address show  | awk '/inet /{print $2}' | while IFS= read line; do \
-iptables -A LOGGING -d  $line -j ACCEPT
-  done
+ip address show  | awk '/inet /{print $2}' | while IFS= read line; do \
+  iptables -A LOGGING -d  $line -j ACCEPT
+done
+IFS=',' read -r -a whitelist_array <<< "$ip_logs$"
+for element in "${whitelist_array[@]}"
+do
+  iptables -A LOGGING -d  $element -j ACCEPT
+done
+
 ## And log all the remaining IP connections.
 iptables -A LOGGING -j LOG --log-prefix "[iplog] " --log-level 7 -m state --state NEW
 fi
