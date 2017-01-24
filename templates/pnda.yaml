@@ -283,6 +283,7 @@ resources:
           template: { get_file: scripts/saltmaster_install.sh }
           params:
             $os_package_mirror$: { get_param: OsPackageMirror }
+            $ip_logs$: { get_param: ip_logs }
             $salt_mirror$: { get_param: salt_mirror }
             $nodejs_mirror$: { get_param: nodejs_mirror }
             $flavor$: { get_param: PndaFlavor }
