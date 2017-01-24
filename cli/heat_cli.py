@@ -146,10 +146,6 @@ def setup_flavor_templates(flavor, cname, is_bare, fs_type, zknodes, kafkanodes,
         templateVars['create_network'] = 0
         templateVars['create_volumes'] = 0
         templateVars['create_bastion'] = 0
-    elif is_bare == 'offline':
-        templateVars['create_network'] = 0
-        templateVars['create_volumes'] = 1
-        templateVars['create_bastion'] = 1
     else:
         templateVars['create_network'] = 1
         templateVars['create_volumes'] = 1
