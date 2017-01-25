@@ -69,8 +69,8 @@ fi
 if [ "x$pip_extra_index_url$" != "x" ] ; then
 TRUSTED_HOST=$(echo '$pip_extra_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
 cat << EOF >> /etc/pip.conf
-[global]:
-  trusted-host = $TRUSTED_HOST
+[global]
+trusted-host = $TRUSTED_HOST
 EOF
 fi
 
