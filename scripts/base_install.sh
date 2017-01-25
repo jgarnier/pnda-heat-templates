@@ -72,6 +72,10 @@ cat << EOF >> /etc/pip.conf
 [global]
 trusted-host = $TRUSTED_HOST
 EOF
+cat << EOF >> /root/.pydistutils.cfg
+[easy_install]
+index_url =  $pip_extra_index_url$
+EOF
 fi
 
 hostname=`hostname` && echo "id: $hostname" > /etc/salt/minion && unset hostname
