@@ -66,6 +66,14 @@ curl --silent $nodejs_mirror$/gpgkey/nodesource.gpg.key | apt-key add -
 apt-get update 
 fi
 
+if [ "x$pip_extra_index_url$" != "x" ] ; then
+TRUSTED_HOST=$(echo '$pip_extra_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
+cat << EOF >> /etc/pip.conf
+[global]:
+  trusted-host = $TRUSTED_HOST
+EOF
+fi
+
 hostname=`hostname` && echo "id: $hostname" > /etc/salt/minion && unset hostname
 echo "log_level: debug" >> /etc/salt/minion
 echo "log_level_logfile: debug" >> /etc/salt/minion
