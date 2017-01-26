@@ -172,10 +172,10 @@ npm:
 EOF
 fi
 
-if [ "x$pip_extra_index_url$" != "x" ] ; then
+if [ "x$pip_index_url$" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 pip:
-  extra_index_url: '$pip_extra_index_url$'
+  index_url: '$pip_index_url$'
 EOF
 fi
 

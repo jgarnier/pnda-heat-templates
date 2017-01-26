@@ -73,8 +73,8 @@ parameters:
     description: URL of a mirror for operating system package download
     type: string
     default: ''
-  pip_extra_index_url:
-    description: Extra index url for pip
+  pip_index_url:
+    description: Index url for pip
     type: string
     default: ''
   extra_mirror:
@@ -295,7 +295,7 @@ resources:
             $cloudera_cm_mirror$: { get_param: ClouderaCmMirror }
             $anaconda_mirror$: { get_param: AnacondaParcelsMirror }
             $npm_registry$: { get_param: npm_registry }
-            $pip_extra_index_url$: { get_param: pip_extra_index_url }
+            $pip_index_url$: { get_param: pip_index_url }
             $extra_mirror$: { get_param: extra_mirror }
             $ntp_servers$: { get_param: NtpServers }
             $package_repository_fs_type$ : {{ package_repository_fs_type }}

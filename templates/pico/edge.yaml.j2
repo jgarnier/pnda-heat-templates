@@ -65,8 +65,8 @@ parameters:
     description: URL of a mirror of SaltStack
     type: string
     default: ''
-  pip_extra_index_url:
-    description: Extra index url for pip
+  pip_index_url:
+    description: Index url for pip
     type: string
     default: ''
 
@@ -106,7 +106,7 @@ resources:
             $ip_logs$: { get_param: ip_logs }
             $salt_mirror$: { get_param: salt_mirror }
             $nodejs_mirror$: { get_param: nodejs_mirror }
-            $pip_extra_index_url$: { get_param: pip_extra_index_url }
+            $pip_index_url$: { get_param: pip_index_url }
             $flavor$: { get_param: pnda_flavor }
             $master_ip$: { get_param: SaltmasterIP }
             $pnda_cluster$: { get_param: cluster_name }

@@ -66,15 +66,16 @@ curl --silent $nodejs_mirror$/gpgkey/nodesource.gpg.key | apt-key add -
 apt-get update 
 fi
 
-if [ "x$pip_extra_index_url$" != "x" ] ; then
-TRUSTED_HOST=$(echo '$pip_extra_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
+if [ "x$pip_index_url$" != "x" ] ; then
+TRUSTED_HOST=$(echo '$pip_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
 cat << EOF >> /etc/pip.conf
 [global]
+idnex-url=$pip_index_url$
 trusted-host = $TRUSTED_HOST
 EOF
 cat << EOF >> /root/.pydistutils.cfg
 [easy_install]
-index_url =  $pip_extra_index_url$
+index_url =  $pip_index_url$
 EOF
 fi
 
