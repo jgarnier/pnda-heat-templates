@@ -112,7 +112,7 @@ parameter_defaults:
   npm_registry: 'https://registry.npmjs.org/'
 
   # alternative pip index
-  pip_index_url: 'http://10.60.18.158:8080/'
+  pip_index_url: ''
 
   # extra mirror to download zookeeper, kafka etc... should be an URI: http://IP:HOST/
   extra_mirror: ''
