@@ -96,6 +96,25 @@ parameters:
   software_config_transport:
     type: string
     default: POLL_TEMP_URL
+  OsPackageMirror:
+    description: URL of a mirror for operating system package download
+    type: string
+    default: ''
+  ip_logs:
+    description: get ip logs for offline tests
+    type: string
+    default: ''
+  salt_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
+  nodejs_mirror:
+    description: URL of a mirror of SaltStack
+    type: string
+    default: ''
+  pip_index_url:
+    description: Index url for pip
+    type: string
 
 
 resources:
