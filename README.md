@@ -77,8 +77,6 @@ To create the OsPackageMirror zip file run the following commands:
     # need to be run as root
     apt-get update
     apt-get install apt-offline
-
-    apt-get udpate
     apt-offline set offline.sig --install-packages redis-server libsasl2-dev g++ python-dev build-essential libcairo2-dev libffi-dev graphite-carbon nginx uwsgi uwsgi-plugin-python libc6-dev acl python-pip python-dev python3-pip python3-dev xfsprogs python-git unzip libmysql-java python-snappy
     apt-offline get offline.sig --bundle pnda-os-packages.zip
 
