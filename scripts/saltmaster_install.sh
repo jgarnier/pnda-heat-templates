@@ -53,7 +53,7 @@ if [ "x$DISTRO" == "xrhel" ]; then
 yum -y install python-git unzip
 fi
 
-if [ "x$salt_mirror$" != "x" && "x$DISTRO" == "xubuntu" ]; then
+if [ "x$salt_mirror$" != "x" ] && [ "x$DISTRO" == "xubuntu" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
 apt-get update --allow-unauthenticated 
 apt-get -y install salt-minion=2015.8.11+ds-1 salt-master=2015.8.11+ds-1

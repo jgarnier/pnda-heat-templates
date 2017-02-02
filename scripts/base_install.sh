@@ -39,7 +39,7 @@ fi
 
 # If system packages are being installed from an offline bundle then download
 # that bundle and make the packages available for installation
-if [ "x$os_package_mirror$" != "x" && "x$DISTRO" == "xubuntu" ]; then
+if [ "x$os_package_mirror$" != "x" ] && [ "x$DISTRO" == "xubuntu" ]; then
 os_mirror_url=$os_package_mirror$
 wget ${os_mirror_url%/*}/apt-offline.deb
 dpkg -i apt-offline.deb
@@ -51,7 +51,7 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 fi
 
-if [ "x$salt_mirror$" != "x" "x$DISTRO" == "xubuntu" ]; then
+if [ "x$salt_mirror$" != "x"  ] && [ "x$DISTRO" == "xubuntu" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
 apt-get update --allow-unauthenticated 
 apt-get -y --force-yes install salt-minion=2015.8.11+ds-1
@@ -61,7 +61,7 @@ sh install_salt.sh -D -U stable 2015.8.11
 fi
 
 
-if [ "x$nodejs_mirror$" != "x" && "x$DISTRO" == "xubuntu" ]; then
+if [ "x$nodejs_mirror$" != "x" ] && [ "x$DISTRO" == "xubuntu" ]; then
 echo 'deb $nodejs_mirror$ trusty main' > /etc/apt/sources.list.d/nodejs.list
 curl --silent $nodejs_mirror$/gpgkey/nodesource.gpg.key | apt-key add -
 apt-get update 
