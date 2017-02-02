@@ -245,7 +245,6 @@ pnda:
 pnda_cluster: $pnda_cluster$
 EOF
 
-<<<<<<< 18ef7e72e0f734fb7298b879edc3041ee824a3c9
 if [ "x$DISTRO" == "xubuntu" ]; then
 restart salt-minion
 restart salt-master
@@ -257,6 +256,4 @@ systemctl enable salt-master
 systemctl restart salt-minion
 systemctl restart salt-master
 fi
-=======
-restart salt-minion
->>>>>>> Log outgoing connections to a dedicated file trough iptables. (#4)
+
