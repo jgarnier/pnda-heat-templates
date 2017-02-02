@@ -14,6 +14,8 @@ EOF
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 if [ "x$DISTRO" == "xubuntu" ]; then
+export DEBIAN_FRONTEND=noninteractive
+
 if [ "x$ip_logs$" != "x" ]; then
 # Log the global scope IP connection.
 cat > /etc/rsyslog.d/10-iptables.conf <<EOF
@@ -47,11 +49,8 @@ wget $os_mirror_url
 apt-offline install ${os_mirror_url##*/}
 fi
 
-# Install a salt minion
-export DEBIAN_FRONTEND=noninteractive
-fi
 
-if [ "x$salt_mirror$" != "x"  ] && [ "x$DISTRO" == "xubuntu" ]; then
+if [ "x$salt_mirror$" != "x" ] && [ "x$DISTRO" == "xubuntu" ]; then
 echo 'deb $salt_mirror$ trusty main' > /etc/apt/sources.list.d/saltstack.list
 apt-get update --allow-unauthenticated 
 apt-get -y --force-yes install salt-minion=2015.8.11+ds-1
