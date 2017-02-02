@@ -95,6 +95,7 @@ resources:
             $pnda_cluster$: { get_param: cluster_name }
             $roles$: 'jupyter'
             $cloudera_role$: 'EDGE'
+            $brokerid$: ''
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     properties:

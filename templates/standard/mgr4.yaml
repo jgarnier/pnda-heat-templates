@@ -102,6 +102,7 @@ resources:
             $log_volume_id$: { get_resource: logvolume }
             $roles$: 'oozie_database,mysql_connector,hue'
             $cloudera_role$: 'MGR04'
+            $brokerid$: ''
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     depends_on: [ logvolume_attachment ]

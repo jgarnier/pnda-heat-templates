@@ -107,6 +107,8 @@ resources:
             $pip_index_url$: { get_param: pip_index_url }
             $flavor$: { get_param: pnda_flavor }
             $roles$: 'bastion'
+            $cloudera_role$: ''
+            $brokerid$: ''
             $master_ip$: { get_param: SaltmasterIP }
             $keyname$: { get_param: 'OS::stack_name' }
             $private_key$: { get_param: private_key }
