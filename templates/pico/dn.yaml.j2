@@ -102,7 +102,8 @@ resources:
             $master_ip$: { get_param: SaltmasterIP }
             $pnda_cluster$: { get_param: cluster_name }
             $log_volume_id$: { get_resource: logvolume }
-            $hdfs_volume_id$: { get_resource: volume }            
+            $hdfs_volume_id$: { get_resource: volume }
+            $roles$: ''
             $cloudera_role$: 'DATANODE'
             $brokerid$: ''
   install_deployment:
