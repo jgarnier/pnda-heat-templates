@@ -146,8 +146,12 @@ if [ "x$cloudera_mirror$" != "x" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 cloudera:
   parcel_repo: '$cloudera_mirror$'
+EOF
+if [ "x$cloudera_cm_mirror$" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
   cm_mirror: '$cloudera_cm_mirror$'
 EOF
+fi
 fi
 
 if [ "x$anaconda_mirror$" != "x" ] ; then
