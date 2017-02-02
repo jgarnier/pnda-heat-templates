@@ -5,16 +5,6 @@
 
 set -ex
 
-# If system packages are being installed from an offline bundle then download
-# that bundle and make the packages available for installation
-if [ "x$os_package_mirror$" != "x" ]; then
-os_mirror_url=$os_package_mirror$
-wget ${os_mirror_url%/*}/apt-offline.deb
-dpkg -i apt-offline.deb
-wget $os_mirror_url
-apt-offline install ${os_mirror_url##*/}
-fi
-
 ROLES=$roles$
 
 cat >> /etc/hosts <<EOF
@@ -44,6 +34,16 @@ do
 done
 ## And log all the remaining IP connections.
 iptables -A LOGGING -j DROP -m state --state NEW
+fi
+
+# If system packages are being installed from an offline bundle then download
+# that bundle and make the packages available for installation
+if [ "x$os_package_mirror$" != "x" ]; then
+os_mirror_url=$os_package_mirror$
+wget ${os_mirror_url%/*}/apt-offline.deb
+dpkg -i apt-offline.deb
+wget $os_mirror_url
+apt-offline install ${os_mirror_url##*/}
 fi
 
 # Install a salt minion

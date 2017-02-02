@@ -8,13 +8,6 @@ set -ex
 
 DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
-# Log the outgoing IP connection.
-cat > /etc/rsyslog.d/10-iptables.conf <<EOF
-:msg,contains,"[iplog] " /var/log/iptables.log
-STOP
-EOF
-sudo service rsyslog restart
-
 if [ "x$ip_logs$" != "x" ]; then
 # Log the global scope IP connection.
 cat > /etc/rsyslog.d/10-iptables.conf <<EOF
