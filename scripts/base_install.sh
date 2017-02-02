@@ -35,6 +35,7 @@ done
 ## And log all the remaining IP connections.
 iptables -A LOGGING -j DROP -m state --state NEW
 fi
+fi
 
 # If system packages are being installed from an offline bundle then download
 # that bundle and make the packages available for installation
