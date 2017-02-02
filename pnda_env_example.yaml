@@ -92,8 +92,8 @@ parameter_defaults:
 
   #
   # OsPackageMirror: URI of the bundle of packages for offline installation of operating system packages
-  #  
-  OsPackageMirror: 'http://www.example.com/mirror/os-pkg/pnda-os-packages.zip'
+  # example: http://www.example.com/mirror/os-pkg/pnda-os-packages.zip
+  OsPackageMirror: ''
 
   #
   # ClouderaParcelsMirror: A mirror of the CDH repo. This is optional but can speed up provisioning
