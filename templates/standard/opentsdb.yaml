@@ -47,6 +47,10 @@ parameters:
     description: URL of a mirror for operating system package download
     type: string
     default: ''
+  pip_index_url:
+    description: URL of a mirror for pip
+    type: string
+    default: ''
 
 resources:
   port:
@@ -70,6 +74,7 @@ resources:
             $pnda_cluster$: { get_param: cluster_name }
             $index$: { get_param: NodeIndex }
             $roles$: 'opentsdb,grafana'
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     properties:

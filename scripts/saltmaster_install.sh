@@ -115,7 +115,7 @@ EOF
 fi
 
 if [ "$pnda_mirror$" != "$" ] ; then
-PIP_INDEX_URL="$pnda_mirror$/simple"
+PIP_INDEX_URL="$pnda_mirror$/mirror_python//simple"
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 pip:
   index_url: '$PIP_INDEX_URL'

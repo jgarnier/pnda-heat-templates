@@ -54,8 +54,6 @@ parameters:
     type: string
   PndaMirror:
     description: URL of a mirror for operating system package download
-    type: string
-    default: ''
 
 resources:
   sec_group:

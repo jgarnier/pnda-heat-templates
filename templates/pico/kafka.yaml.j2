@@ -53,6 +53,8 @@ parameters:
     default: POLL_TEMP_URL
   PndaMirror:
     description: URL of a mirror for operating system package download
+  pip_index_url:
+    description: URL of a mirror for pip
     type: string
     default: ''
 
@@ -81,6 +83,7 @@ resources:
             $pnda_cluster$: { get_param: cluster_name }
             $log_volume_id$: { get_resource: logvolume }
             $roles$: 'kafka,kafka_manager,platform_testing_general,elk,zookeeper'
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
 {%if create_volumes is equalto 1 %}
