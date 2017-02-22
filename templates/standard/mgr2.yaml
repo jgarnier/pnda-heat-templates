@@ -42,6 +42,8 @@ parameters:
     type: string
   PndaMirror:
     description: URL of a mirror for operating system package download
+  pip_index_url:
+    description: URL of a mirror for pip
     type: string
     default: ''
 
@@ -82,7 +84,7 @@ resources:
             $log_volume_id$: { get_resource: logvolume }
             $roles$: 'cloudera_namenode,mysql_connector'
             $cloudera_role$: 'MGR02'
-
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     depends_on: [ logvolume_attachment ]

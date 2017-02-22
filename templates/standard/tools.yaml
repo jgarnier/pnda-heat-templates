@@ -44,6 +44,10 @@ parameters:
     description: URL of a mirror for operating system package download
     type: string
     default: ''
+  pip_index_url:
+    description: URL of a mirror for pip
+    type: string
+    default: ''
 
 resources:
   port:
@@ -66,6 +70,7 @@ resources:
             $master_ip$: { get_param: SaltmasterIP }
             $pnda_cluster$: { get_param: cluster_name }
             $roles$: 'kafka_manager,platform_testing_general,elk'
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     properties:

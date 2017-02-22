@@ -51,6 +51,8 @@ parameters:
     default: POLL_TEMP_URL
   PndaMirror:
     description: URL of a mirror for operating system package download
+  pip_index_url:
+    description: URL of a mirror for pip
     type: string
     default: ''
 
@@ -93,7 +95,7 @@ resources:
             $log_volume_id$: { get_resource: logvolume }
             $roles$: 'cloudera_edge,console_frontend,console_backend_data_logger,console_backend_data_manager,graphite,gobblin,deployment_manager,package_repository,data_service,impala-shell,yarn-gateway,hbase_opentsdb_tables,hdfs_cleaner,master_dataset,elk,logserver,kibana_dashboard,jupyter,cloudera_manager,platform_testing_cdh,mysql_connector,pnda_restart'
             $cloudera_role$: 'EDGE'
-
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
 {%if create_volumes is equalto 1 %}

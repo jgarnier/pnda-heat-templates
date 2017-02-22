@@ -58,6 +58,10 @@ parameters:
     description: URL of a mirror for operating system package download
     type: string
     default: ''
+  pip_index_url:
+    description: URL of a mirror for pip
+    type: string
+    default: ''
 
 resources:
 {%if create_network is equalto 1 %}
@@ -84,6 +88,7 @@ resources:
             $log_volume_id$: { get_resource: logvolume }
             $hdfs_volume_id$: { get_resource: volume }            
             $cloudera_role$: 'DATANODE'
+            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
 {%if create_volumes is equalto 1 %}

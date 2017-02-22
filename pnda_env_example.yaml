@@ -90,6 +90,11 @@ parameter_defaults:
   git_private_key_file: deploy
 
   #
+  # pip_index_url: A mirror of pip. 
+  # example format: 'http://x.x.x.x/simple'
+  pip_index_url: ''
+
+  #
   # NtpServers: Optional ntp servers. Use this if the standard Ubuntu NTP servers on the Internet cannot be reached
   # and a local NTP server has been configured. PNDA will not work without NTP.
   # example format: 'xxx.ntp.org'

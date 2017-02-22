@@ -54,6 +54,8 @@ parameters:
     type: string
   PndaMirror:
     description: URL of a mirror for operating system package download
+  pip_index_url:
+    description: URL of a mirror for pip
     type: string
     default: ''
 
@@ -97,6 +99,7 @@ resources:
             $package_repository_fs_type$: { get_param: package_repository_fs_type }
             $roles$: 'cloudera_edge,console_frontend,console_backend_data_logger,console_backend_data_manager,graphite,gobblin,deployment_manager,package_repository,data_service,impala-shell,yarn-gateway,hbase_opentsdb_tables,hdfs_cleaner,master_dataset'
             $cloudera_role$: 'EDGE'
+            $pip_index_url$: { get_param: pip_index_url }
 
   install_deployment:
     type: OS::Heat::SoftwareDeployment

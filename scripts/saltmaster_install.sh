@@ -114,6 +114,13 @@ ntp:
 EOF
 fi
 
+if [ "x$pip_index_url$" != "x" ] ; then
+cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
+pip:
+  index_url: '$pip_index_url$'
+EOF
+fi
+
 if [ "$package_repository_fs_type$" == "swift" ] ; then
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 package_repository:
