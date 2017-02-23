@@ -81,11 +81,11 @@ TRUSTED_HOST=$(echo '$pip_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
 cat << EOF >> /etc/pip.conf
 [global]
 index-url=$pip_index_url$
-trusted-host = $TRUSTED_HOST
+trusted-host=$TRUSTED_HOST
 EOF
 cat << EOF >> /root/.pydistutils.cfg
 [easy_install]
-index_url =  $pip_index_url$
+index_url=$pip_index_url$
 EOF
 fi
 
