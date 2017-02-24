@@ -77,6 +77,7 @@ EOF
 fi
 
 if [ "$pnda_mirror$" != "$" ] ; then
+<<<<<<< 2a9aadbb48f43e7b74342f9776d2a7c5c8aa3630
 PIP_INDEX_URL="$pnda_mirror$/mirror_python/simple"
 TRUSTED_HOST=$(echo '$PIP_INDEX_URL' | awk -F'[/:]' '/http:\/\//{print $4}')
 cat << EOF > /etc/pip.conf

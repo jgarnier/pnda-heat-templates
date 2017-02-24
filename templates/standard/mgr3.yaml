@@ -78,7 +78,6 @@ resources:
             $log_volume_id$: { get_resource: logvolume }
             $roles$: 'mysql_connector'
             $cloudera_role$: 'MGR03'
-            $pip_index_url$: { get_param: pip_index_url }
   install_deployment:
     type: OS::Heat::SoftwareDeployment
     depends_on: [ logvolume_attachment ]
