@@ -76,16 +76,17 @@ roles: [${ROLES}]
 EOF
 fi
 
-if [ "$pip_index_url$" != "$" ] ; then
-TRUSTED_HOST=$(echo '$pip_index_url$' | awk -F'[/:]' '/http:\/\//{print $4}')
-cat << EOF >> /etc/pip.conf
+if [ "$pnda_mirror$" != "$" ] ; then
+PIP_INDEX_URL="$pnda_mirror$/simple"
+TRUSTED_HOST=$(echo '$PIP_INDEX_URL' | awk -F'[/:]' '/http:\/\//{print $4}')
+cat << EOF > /etc/pip.conf
 [global]
-index-url=$pip_index_url$
+index-url=$PIP_INDEX_URL
 trusted-host=$TRUSTED_HOST
 EOF
-cat << EOF >> /root/.pydistutils.cfg
+cat << EOF > /root/.pydistutils.cfg
 [easy_install]
-index_url=$pip_index_url$
+index_url=$PIP_INDEX_URL
 EOF
 fi
 

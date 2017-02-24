@@ -114,10 +114,11 @@ ntp:
 EOF
 fi
 
-if [ "x$pip_index_url$" != "x" ] ; then
+if [ "$pnda_mirror$" != "$" ] ; then
+PIP_INDEX_URL="$pnda_mirror$/simple"
 cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 pip:
-  index_url: '$pip_index_url$'
+  index_url: '$PIP_INDEX_URL'
 EOF
 fi
 
