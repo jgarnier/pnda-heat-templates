@@ -92,6 +92,7 @@ fi
 
 if [ "x$DISTRO" == "xubuntu" ]; then
 service salt-minion restart
+fi
 
 # Mount the disks
 LOG_VOLUME_ID="$log_volume_id$"
