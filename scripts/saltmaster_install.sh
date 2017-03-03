@@ -118,6 +118,9 @@ anaconda:
 
 packages_server:
   base_uri: $pnda_mirror$/pnda
+
+pip:
+  index_url: '$pnda_mirror$/mirror_python/simple'
 EOF
 
 if [ "x$ntp_servers$" != "x" ] ; then
@@ -125,14 +128,6 @@ cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 ntp:
   servers:
     - "$ntp_servers$"
-EOF
-fi
-
-if [ "$pnda_mirror$" != "$" ] ; then
-PIP_INDEX_URL="$pnda_mirror$/mirror_python/simple"
-cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
-pip:
-  index_url: '$PIP_INDEX_URL'
 EOF
 fi
 
