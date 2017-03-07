@@ -10,7 +10,7 @@ DISTRO=$(cat /etc/*-release|grep ^ID\=|awk -F\= {'print $2'}|sed s/\"//g)
 
 # Install the saltmaster, plus saltmaster config
 if [ "x$DISTRO" == "xubuntu" ]; then
-  rm -rf /etc/apt/sources.list.d/*
+rm -rf /etc/apt/sources.list.d/*
 rm -rf /etc/apt/sources.list
 touch /etc/apt/sources.list
 cat > /etc/apt/sources.list.d/local.list <<EOF
@@ -164,14 +164,6 @@ cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
 package_repository:
   fs_type: "$package_repository_fs_type$"
   fs_location_path: "$package_repository_fs_location_path$"
-EOF
-fi
-
-
-if [ "x$packages_server_uri$" != "x" ] ; then
-cat << EOF >> /srv/salt/platform-salt/pillar/env_parameters.sls
-packages_server:
-  base_uri: $packages_server_uri$
 EOF
 fi
 
